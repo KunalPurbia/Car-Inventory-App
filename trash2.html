@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
-    <link rel="stylesheet" href="/public/stylesheets/homeStyle.css">
     <link rel="stylesheet" href="/public/stylesheets/registerForm.css">
     <title>HOME</title>
 </head>
@@ -28,7 +27,36 @@
             <button><a class="displayButton" href="/login">LOGIN</a></button>
         </span>
     </div>
-    <div id="homeView"></div>
+    <div id="homeView">
+        <div id="registrationForm">
+            <form action="/register/seller" method="post" id="formBox">
+                <label for="userType">USER:</label><br>
+                <input type="text" name="userType" id="userType" value="SELLER" disabled><br>
+                <label for="showroom">Showroom Name</label><br>
+                <input type="text" name="showroom" id="showroom"><br>
+                <label for="showroomAddress">Showroom Address</label><br>
+                <input type="text" name="showroom" id="showroom"><br>
+                <label for="showroomContact">Showroom Contact No.</label><br>
+                <input type="text" name="showroom" id="showroom"><br>
+                <label for="showroomId">Showroom ID</label><br>
+                <input type="text" name="showroomId" id="showroomId"><br>
+                <label for="showroomEmail">Showroom Email</label><br>
+                <input type="text" name="showroomEmail" id="showroomEmail"><br>
+                <label for="carCompany">Car Company</label><br>
+                <input type="text" name="carCompany" list="companyName"><br>
+                <datalist id="companyName">
+                    <option value="MERCEDES">
+                    <option value="VOLVO">
+                    <option value="BMW">
+                    <option value="AUDI">
+                    <option value="SKODA">
+                    <option value="HONDA">
+                    <option value="TATA">
+                    <option value="MARUTI">
+                </datalist>
+            </form>
+        </div>
+    </div>
     <script src="./public/javascripts/registerForm.js"></script>
 </body>
 
