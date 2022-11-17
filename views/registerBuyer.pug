@@ -30,27 +30,44 @@ html(lang='en')
           label(for='username') Name:
           br
           input#username(type='text', name='username')
+          if errorInput === "username"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='userAddress') Address:
           br
           input#userAddress(type='text', name='userAddress')
+          if errorInput === "userAddress"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='userContact') Contact No.:
           br
           input#userContact(type='text', name='userContact')
+          if errorInput === "userContact"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='userEmail') Email:
           br
           input#userEmail(type='text', name='userEmail')
+          if errorInput === "userEmail"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='password') Password:
           br
           input#password(type='password', name='password')
+          if errorInput === "password"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='cpassword') Confirm Password:
           br
           input#cpassword(type='password', name='cpassword')
-          br
+          if errorInput === "cpassword"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           input#registerButton(type='submit', value='REGISTER')
     script(src='/javascripts/registerForm.js')

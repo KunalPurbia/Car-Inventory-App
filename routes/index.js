@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const userController = require('../controllers/userController');
 
-/* GET home page. */
+/////////////////////////////////////GET HOME PAGE
 router.get('/', userController.getHomePage);
 
 module.exports = router;

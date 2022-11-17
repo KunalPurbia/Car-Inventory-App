@@ -23,13 +23,19 @@ html(lang='en')
     #homeView
       #registrationForm
         form#formBox(action='/login', method='post')
-          label(for='userEmail') Email:
+          label(for='email') Email:
           br
-          input#userEmail(type='text', name='userEmail')
+          input#userEmail(type='text', name='email')
+          if errorInput === "email"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='password') Password:
           br
           input#password(type='password', name='password')
+          if errorInput === "password"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           br
           input#loginButton(type='submit', value='LOGIN')

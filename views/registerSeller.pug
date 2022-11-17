@@ -29,35 +29,59 @@ html(lang='en')
           br
           label(for='showroom') Showroom Name:
           br
-          input#showroom(type='text', name='showroom')
+          input#showroom(type='text', name='showroomName')
+          if errorInput === "showroomName"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='showroomAddress') Showroom Address:
           br
-          input#showroom(type='text', name='showroom')
+          input#showroom(type='text', name='showroomAddress')
+          if errorInput === "showroomAddress"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='showroomContact') Showroom Contact No.:
           br
-          input#showroom(type='text', name='showroom')
+          input#showroom(type='text', name='showroomContact')
+          if errorInput === "showroomContact"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='showroomId') Showroom ID:
           br
           input#showroomId(type='text', name='showroomId')
+          if errorInput === "showroomId"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='showroomEmail') Showroom Email:
           br
           input#showroomEmail(type='text', name='showroomEmail')
+          if errorInput === "showroomEmail"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='password') Password:
           br
           input#showroomEmail(type='password', name='password')
+          if errorInput === "username"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='cpassword') Confirm Password:
           br
           input#showroomEmail(type='password', name='cpassword')
+          if errorInput === "username"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           label(for='carCompany') Car Company:
           br
           input(type='text', name='carCompany', list='companyName')
+          if errorInput === "username"
+            p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
+          endif
           br
           datalist#companyName
             option(value='MERCEDES')
