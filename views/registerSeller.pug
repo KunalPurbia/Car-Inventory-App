@@ -65,21 +65,21 @@ html(lang='en')
           label(for='password') Password:
           br
           input#showroomEmail(type='password', name='password')
-          if errorInput === "username"
+          if errorInput === "password"
             p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
           endif
           br
           label(for='cpassword') Confirm Password:
           br
           input#showroomEmail(type='password', name='cpassword')
-          if errorInput === "username"
+          if errorInput === "cpassword"
             p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
           endif
           br
           label(for='carCompany') Car Company:
           br
           input(type='text', name='carCompany', list='companyName')
-          if errorInput === "username"
+          if errorInput === "carCompany"
             p(style={"color":"red","font-weight":"bold","text-decoration":"underline"})   #{message} 
           endif
           br

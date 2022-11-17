@@ -3,7 +3,8 @@ const {
     check,
     validationResult
 } = require('express-validator');
-var router = express.Router();
+
+const userDB = require('../models/userdb')
 
 urlencoded = express.urlencoded({
     extended: false
@@ -25,35 +26,19 @@ const loginCheck = [check('email', 'Email is not valid').isEmail(),
 ]
 
 /////////////////////////////////////POST USER LOGIN
-module.exports.postLogin = [urlencoded, loginCheck, function (req, res, next) {
-    console.log("Login");
-    console.log(req.body);
+module.exports.postLogin = [urlencoded, loginCheck, async function (req, res, next) {
     let errorData = validationResult(req);
     let errorArray = errorData.errors;
     if (errorArray.length === 0) {
-        const dob = req.body.dob;
-        const year = dob.slice(0, 4);
-        const currentYear = new Date().getFullYear();
-        const age = currentYear - year;
-
         const userDetail = {};
-        userDetail.username = req.body.username;
         userDetail.email = req.body.email;
-        userDetail.dob = req.body.dob;
-        userDetail.age = age;
         userDetail.password = req.body.password;
 
-        res.send("Login")
-        // const newUser = new User(userDetail);
-
-        // newUser.save((err) => {
-        //     if (err) throw err
-        //     res.redirect('/login');
-        // })
+        let foundUser = await userDB.userLogin(userDetail);
+        res.send(foundUser)
     } else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
-        // res.send(error)
         res.render('login', {
             errorInput: errorInput,
             message: errorMessage
@@ -71,7 +56,9 @@ const buyerRegisterCheck = [check('username', 'Name cannot be empty').notEmpty()
     check('userAddress', 'Address cannot be empty').notEmpty(),
     check('userContact', 'Contact cannot be empty').notEmpty(),
     check('userEmail', 'Email is not valid').isEmail(),
-    check('password', 'Password cannot be empty').notEmpty(),
+    check('password', 'Password must have atleast 5 characters').isLength({
+        min: 5
+    }),
     check('cpassword').custom((value, {
         req
     }) => {
@@ -83,31 +70,20 @@ const buyerRegisterCheck = [check('username', 'Name cannot be empty').notEmpty()
 
 /////////////////////////////////////POST BUYER REGISTER
 module.exports.postRegisterBuyer = [urlencoded, buyerRegisterCheck, function (req, res, next) {
-    console.log("Buyer");
-    console.log(req.body);
     let errorData = validationResult(req);
     let errorArray = errorData.errors;
     if (errorArray.length === 0) {
-        const dob = req.body.dob;
-        const year = dob.slice(0, 4);
-        const currentYear = new Date().getFullYear();
-        const age = currentYear - year;
-
-        const userDetail = {};
-        userDetail.username = req.body.username;
-        userDetail.email = req.body.email;
-        userDetail.dob = req.body.dob;
-        userDetail.age = age;
-        userDetail.password = req.body.password;
-
-        res.send("Buyer")
-        // const newUser = new User(userDetail);
-
-        // newUser.save((err) => {
-        //     if (err) throw err
-        //     res.redirect('/login');
-        // })
-    } else {
+        const buyerDetail = {}
+        buyerDetail.userRole = "Buyer";
+        buyerDetail.username= req.body.username;
+        buyerDetail.userAddress= req.body.userAddress;
+        buyerDetail.userContact= req.body.userContact;
+        buyerDetail.userEmail= req.body.userEmail;
+        buyerDetail.password= req.body.password;
+        
+        userDB.addBuyer(buyerDetail);
+    }
+    else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
         // res.send(error)
@@ -131,7 +107,9 @@ const sellerRegisterCheck = [check('showroomName', 'Showroom Name cannot be empt
     check('showroomId', 'Showroom ID cannot be empty').notEmpty(),
     check('carCompany', 'Car Company cannot be empty').notEmpty(),
     check('showroomEmail', 'Email is not valid').isEmail(),
-    check('password', 'Password cannot be empty').notEmpty(),
+    check('password', 'Password must have atleast 5 characters').isLength({
+        min: 5
+    }),
     check('cpassword').custom((value, {
         req
     }) => {
@@ -143,34 +121,24 @@ const sellerRegisterCheck = [check('showroomName', 'Showroom Name cannot be empt
 
 /////////////////////////////////////POST SELLER REGISTER
 module.exports.postRegisterSeller = [urlencoded, sellerRegisterCheck, function (req, res, next) {
-    console.log("Seller");
-    console.log(req.body)
     let errorData = validationResult(req);
+    console.log(errorData);
     let errorArray = errorData.errors;
     if (errorArray.length === 0) {
-        const dob = req.body.dob;
-        const year = dob.slice(0, 4);
-        const currentYear = new Date().getFullYear();
-        const age = currentYear - year;
+        const sellerDetail = {};
+        sellerDetail.userRole = "Seller";
+        sellerDetail.showroomName = req.body.showroomName;
+        sellerDetail.showroomAddress = req.body.showroomAddress;
+        sellerDetail.showroomContact = req.body.showroomContact;
+        sellerDetail.showroomId = req.body.showroomId;
+        sellerDetail.showroomEmail = req.body.showroomEmail;
+        sellerDetail.password = req.body.password;
+        sellerDetail.carCompany = req.body.carCompany;
 
-        const userDetail = {};
-        userDetail.username = req.body.username;
-        userDetail.email = req.body.email;
-        userDetail.dob = req.body.dob;
-        userDetail.age = age;
-        userDetail.password = req.body.password;
-
-        res.send("Seller")
-        // const newUser = new User(userDetail);
-
-        // newUser.save((err) => {
-        //     if (err) throw err
-        //     res.redirect('/login');
-        // })
+        userDB.addSeller(sellerDetail);
     } else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
-        // res.send(error)
         console.log(errorInput);
         res.render('registerSeller', {
             errorInput: errorInput,
