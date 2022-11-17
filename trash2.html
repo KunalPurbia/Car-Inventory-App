@@ -29,31 +29,12 @@
     </div>
     <div id="homeView">
         <div id="registrationForm">
-            <form action="/register/seller" method="post" id="formBox">
-                <label for="userType">USER:</label><br>
-                <input type="text" name="userType" id="userType" value="SELLER" disabled><br>
-                <label for="showroom">Showroom Name</label><br>
-                <input type="text" name="showroom" id="showroom"><br>
-                <label for="showroomAddress">Showroom Address</label><br>
-                <input type="text" name="showroom" id="showroom"><br>
-                <label for="showroomContact">Showroom Contact No.</label><br>
-                <input type="text" name="showroom" id="showroom"><br>
-                <label for="showroomId">Showroom ID</label><br>
-                <input type="text" name="showroomId" id="showroomId"><br>
-                <label for="showroomEmail">Showroom Email</label><br>
-                <input type="text" name="showroomEmail" id="showroomEmail"><br>
-                <label for="carCompany">Car Company</label><br>
-                <input type="text" name="carCompany" list="companyName"><br>
-                <datalist id="companyName">
-                    <option value="MERCEDES">
-                    <option value="VOLVO">
-                    <option value="BMW">
-                    <option value="AUDI">
-                    <option value="SKODA">
-                    <option value="HONDA">
-                    <option value="TATA">
-                    <option value="MARUTI">
-                </datalist>
+            <form action="/login" method="post" id="formBox">
+                <label for="userEmail">Email:</label><br>
+                <input type="text" name="userEmail" id="userEmail"><br>
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" id="password"><br><br>
+                <input type="submit" value="LOGIN" id="loginButton">
             </form>
         </div>
     </div>

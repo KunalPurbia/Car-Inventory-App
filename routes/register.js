@@ -1,12 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const userController = require('../controllers/userController');
 
-router.get('/buyer', function(req, res, next) {
-  res.render('registerBuyer');
-});
+router.get('/buyer', userController.getRegisterPageBuyer);
 
-router.get('/seller', function(req, res, next) {
-  res.render('registerSeller');
-});
+router.get('/seller', userController.getRegisterPageSeller);
 
 module.exports = router;

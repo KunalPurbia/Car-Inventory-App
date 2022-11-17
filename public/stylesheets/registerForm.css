@@ -4,17 +4,17 @@
     display: inline-block;
 
   }
-  
+
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
-  
+
   /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
@@ -22,18 +22,22 @@
     text-decoration: none;
     display: block;
   }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
 
-  body{
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {
+    display: block;
+  }
+
+  body {
     overflow: hidden;
   }
-  
-  #navbar{
+
+  #navbar {
     position: absolute;
     display: inline;
     background-color: #8dc6ff;
@@ -42,10 +46,10 @@
     height: 60px;
     top: 0;
     left: 0;
-  
+
   }
-  
-  #brandLogo{
+
+  #brandLogo {
     position: absolute;
     display: inline;
     top: 7px;
@@ -55,63 +59,87 @@
     border-radius: 10px;
     float: left;
   }
-  
-  #navbar p{
-    font-size:25px; 
-    position: relative; 
-    display: inline; 
+
+  #navbar p {
+    font-size: 25px;
+    position: relative;
+    display: inline;
     top: 10px;
-    color:darkred; 
-    font-family:cursive; 
+    color: darkred;
+    font-family: cursive;
     font-weight: bold;
   }
-  
-  #buttons{
+
+  #buttons {
     position: absolute;
     display: inline-block;
     right: 0px;
     top: 0;
     margin: 15px;
   }
-  
-  #buttons button{
+
+  #buttons button {
     margin-right: 10px;
     height: 33px;
     width: 120px;
     background-color: lightgrey;
     border-radius: 10px;
   }
-  
-  .displayButton{
+
+  .displayButton {
     color: black;
     text-decoration: none;
     font-weight: bolder;
   }
-  
-  #homeView{
+
+  #homeView {
     position: absolute;
     background-color: #e4f1fe;
     top: 63px;
     left: 0;
     height: 93%;
-    width: 100%;    
+    width: 100%;
   }
 
-  #registrationForm{
+  #formBox {
     position: absolute;
     left: 25%;
-    top: 15%;
+    top: 30px;
     width: 800px;
-    height: 525px;
+    height: auto;
+    padding: 2em 0;
+    border: 3px solid black;
   }
 
-  #registrationForm label{
+  #formBox label {
     position: relative;
-    left: 30%;
-  
+    left: 25%;
+    top: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 
-  #registrationForm input{
+  #formBox input {
     position: relative;
-    left: 30%;
+    left: 25%;
+    top: 5%;
+    width: 25em;
+    height: 2em;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    border: 2px solid black;
+  }
+
+  #registerButton {
+    background-color: yellowgreen;
+    color: antiquewhite;
+    font-weight: bolder;
+    font-size: 13.5px;
+  }
+
+  #loginButton {
+    background-color: yellowgreen;
+    color: antiquewhite;
+    font-weight: bolder;
+    font-size: 13.5px;
   }
