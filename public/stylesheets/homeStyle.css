@@ -1,7 +1,3 @@
-body{
-  overflow: hidden;
-}
-
 #navbar{
   position: absolute;
   display: inline;
@@ -62,7 +58,7 @@ body{
   background-color: #e4f1fe;
   top: 63px;
   left: 0;
-  height: 93%;
+  height: 100%;
   width: 100%;
   background-image: url("../images/brand_logo.webp");
   background-repeat: no-repeat;

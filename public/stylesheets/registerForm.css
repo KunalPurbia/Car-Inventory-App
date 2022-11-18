@@ -33,10 +33,6 @@
     display: block;
   }
 
-  body {
-    overflow: hidden;
-  }
-
   #navbar {
     position: absolute;
     display: inline;
