@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 /////////////////////////////////////SCHEMA FOR ADD CATALOGUE
 const catalogueSchema = mongoose.Schema({
     email: String,
-    companyName: String,
+    carCompany: String,
     companyAbout: String,
     companyLogo: String
 })
@@ -20,10 +20,12 @@ module.exports.addCatalogue = (buyerDetail) =>{
     })
 }
 
+/////////////////////////////////////DISPLAYING ALL CATALOGUE DATA
 module.exports.getCatalogue = () => {
     return new Promise((resolve) => {
         Catalogue.find({}, function(err, foundData){
             if(err) throw err;
+            console.log(foundData);
             resolve(foundData)
         });
     });

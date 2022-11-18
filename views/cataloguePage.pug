@@ -27,13 +27,14 @@ html(lang='en')
         button
           a.displayButton(href='/') LOGOUT
     #homeView
-      #container
-        img(src='https://www.bing.com/th?id=OIP.JXwJ20kbfTZ-0hlIE1s5rAHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2', alt='Jaguar Brand Logo')
-        h2 JAGUAR
-        p
-          b ABOUT: 
-          span Jaguar is the luxury vehicle brand of Jaguar Land Rover, a British multinational car manufacturer with its headquarters in Whitley, Coventry, England.
-        input(type='button', value='SEE CARS')
+      each value in catalogueData
+        #container
+          img(src=value.companyLogo, alt='Company Logo')
+          h2 #{value.carCompany}
+          p
+            b ABOUT: 
+            span #{value.companyAbout}
+          input(type='button', value='SEE CARS')
       if user === "seller"
         #addCatalogue
           a.displayButton(href='/seller/catalogue/add') ADD CATALOGUE
