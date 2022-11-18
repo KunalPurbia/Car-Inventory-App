@@ -1,3 +1,6 @@
+body{
+    background-color: #e4f1fe;
+}
 #container{
     position: relative;
     display: inline-block;
@@ -5,8 +8,7 @@
     border: 2px solid black;
     width: 300px;
     height: 400px;
-    margin: 3em;
-    color: aqua;
+    margin: 4.5em;
     overflow: visible;
 }
 
@@ -14,4 +16,36 @@
     position: absolute;
     width: 100%;
     border-bottom: 5px solid black;
+}
+
+#container h2{
+    position: relative;
+    text-align: center;
+    background-color: #8dc6ff;
+    top: 180px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#container h3{
+    position: relative;
+    top: 160px;
+    text-align: center;
+    border: 1px dashed red;
+}
+
+#container p{
+    position: relative;
+    top: 145px;
+    text-align: center;
+}
+
+#container input{
+    position: relative;
+    top: 145px;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    left: 30%;
+    border-radius: 100px;
+    background-color: #8dc6ff;
 }

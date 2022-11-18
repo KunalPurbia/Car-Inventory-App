@@ -6,8 +6,8 @@ const buyerSchema = mongoose.Schema({
     username: String,
     userAddress: String,
     userContact: Number,
-    userEmail: String,
-    password: String,
+    email: String,
+    password: String
 })
 
 /////////////////////////////////////MODEL FOR BUYER
@@ -19,7 +19,6 @@ module.exports.addBuyer = (buyerDetail) =>{
 
     newBuyer.save((err)=>{
         if(err) throw err;
-        console.log("Buyer Added");
     })
 }
 
@@ -30,7 +29,7 @@ const sellerSchema = mongoose.Schema({
     showroomAddress: String,
     showroomContact: Number,
     showroomId: String,
-    showroomEmail: String,
+    email: String,
     password: String,
     carCompany: String
 })
@@ -44,26 +43,21 @@ module.exports.addSeller = (sellerDetail) =>{
 
     newSeller.save((err)=>{
         if(err) throw err;
-        console.log("Buyer Added");
     })
 }
 
-/////////////////////////////////////MODEL TO FIND SELLER
-const USER_SELLER = mongoose.model("seller");
-
-/////////////////////////////////////MODEL TO FIND BUYER
-const USER_BUYER = mongoose.model("buyer");
-
 /////////////////////////////////////FINDING USER
 module.exports.userLogin = (userDetail) =>{
+    const email = userDetail.email;
+    const password = userDetail.password;
     return new Promise((resolve) => {
-        USER_BUYER.findOne(userDetail, function(err, foundBuyer){
+        Buyer.findOne({email:email, password:password}, function(err, foundBuyer){
             if(err) throw err;
             else{
                 if(foundBuyer){
                     resolve(foundBuyer);
                 } else{
-                    USER_SELLER.findOne(userDetail, function(err, foundSeller){
+                    Seller.findOne({email:email, password:password}, function(err, foundSeller){
                         if(err) throw err;
                         resolve(foundSeller)
                     });

@@ -35,7 +35,17 @@ module.exports.postLogin = [urlencoded, loginCheck, async function (req, res, ne
         userDetail.password = req.body.password;
 
         let foundUser = await userDB.userLogin(userDetail);
-        res.send(foundUser)
+        if(foundUser!=null){
+            if(foundUser.userRole === "Buyer"){
+                res.cookie("user_email", foundUser.email)
+                res.redirect("/buyer")
+            } else{
+                res.cookie("user_email", foundUser.email)
+                res.redirect("/seller")
+            }
+        } else{
+            res.send("<center><h1>User does not exist!</center></h1>")
+        }
     } else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
@@ -78,16 +88,15 @@ module.exports.postRegisterBuyer = [urlencoded, buyerRegisterCheck, function (re
         buyerDetail.username= req.body.username;
         buyerDetail.userAddress= req.body.userAddress;
         buyerDetail.userContact= req.body.userContact;
-        buyerDetail.userEmail= req.body.userEmail;
+        buyerDetail.email= req.body.userEmail;
         buyerDetail.password= req.body.password;
         
         userDB.addBuyer(buyerDetail);
+        res.redirect("/login");
     }
     else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
-        // res.send(error)
-        console.log(errorInput);
         res.render('registerBuyer', {
             errorInput: errorInput,
             message: errorMessage
@@ -122,7 +131,6 @@ const sellerRegisterCheck = [check('showroomName', 'Showroom Name cannot be empt
 /////////////////////////////////////POST SELLER REGISTER
 module.exports.postRegisterSeller = [urlencoded, sellerRegisterCheck, function (req, res, next) {
     let errorData = validationResult(req);
-    console.log(errorData);
     let errorArray = errorData.errors;
     if (errorArray.length === 0) {
         const sellerDetail = {};
@@ -131,15 +139,15 @@ module.exports.postRegisterSeller = [urlencoded, sellerRegisterCheck, function (
         sellerDetail.showroomAddress = req.body.showroomAddress;
         sellerDetail.showroomContact = req.body.showroomContact;
         sellerDetail.showroomId = req.body.showroomId;
-        sellerDetail.showroomEmail = req.body.showroomEmail;
+        sellerDetail.email = req.body.showroomEmail;
         sellerDetail.password = req.body.password;
         sellerDetail.carCompany = req.body.carCompany;
 
         userDB.addSeller(sellerDetail);
+        res.redirect("/login");
     } else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
-        console.log(errorInput);
         res.render('registerSeller', {
             errorInput: errorInput,
             message: errorMessage
