@@ -11,16 +11,17 @@ urlencoded = express.urlencoded({
 });
 
 /////////////////////////////////////BUYER CATALOGUE PAGE DISPLAY
-module.exports.getCataloguePageBuyer = async function(req, res, next){
+module.exports.getCataloguePageBuyer = async function (req, res, next) {
     const userEmail = req.cookies.user_email;
     let catalogueData = await catalogueDB.getCatalogue();
-    res.render("cataloguePage", {userEmail: userEmail, user:"buyer", catalogueData: catalogueData})
+    res.render("cataloguePage", { userEmail: userEmail, user: "buyer", catalogueData: catalogueData });
 }
 
 /////////////////////////////////////SELLER CATALOGUE PAGE DISPLAY
-module.exports.getCataloguePageSeller = function(req, res, next){
+module.exports.getCataloguePageSeller = async function (req, res, next) {
     const userEmail = req.cookies.user_email;
-    res.render("cataloguePage", {userEmail: userEmail, user:"seller"})
+    let catalogueData = await catalogueDB.getCatalogue();
+    res.render("cataloguePage", { userEmail: userEmail, user: "seller", catalogueData: catalogueData });
 }
 
 /////////////////////////////////////ADD-CATALOGUE PAGE DISPLAY
@@ -33,12 +34,12 @@ module.exports.getAddCataologue = function (req, res, next) {
 }
 
 let catalogueCheck = [check('carCompany', 'Car Company cannot be empty').notEmpty(),
-    check('companyAbout', 'Company Detail cannot be empty').notEmpty(),
-    check('companyLogo', 'Insert company logo').notEmpty()
+check('companyAbout', 'Company Detail cannot be empty').notEmpty(),
+check('companyLogo', 'Insert company logo').notEmpty()
 ]
 
 /////////////////////////////////////ADDING CATALOGUE TO DATABASE
-module.exports.postAddCataologue = [urlencoded, catalogueCheck, async function (req, res, next) {
+module.exports.postAddCataologue = [urlencoded, catalogueCheck, function (req, res, next) {
     const userEmail = req.cookies.user_email;
 
     let data = {};
@@ -51,7 +52,7 @@ module.exports.postAddCataologue = [urlencoded, catalogueCheck, async function (
     let errorArray = errorData.errors;
     if (errorArray.length === 0) {
         catalogueDB.addCatalogue(data)
-        res.render("cataloguePage", {userEmail: userEmail, user:"seller"})   
+        res.render("cataloguePage", { userEmail: userEmail, user: "seller" })
     } else {
         const errorInput = errorArray[0].param;
         const errorMessage = errorArray[0].msg;
